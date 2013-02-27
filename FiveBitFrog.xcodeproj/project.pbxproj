@@ -1,0 +1,256 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B412BCA216DA06AF00BB319C /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = B412BCA116DA06AF00BB319C /* main.c */; };
+		B42E618816DB6E6700268757 /* fivebyfive.c in Sources */ = {isa = PBXBuildFile; fileRef = B42E618716DB6E6700268757 /* fivebyfive.c */; };
+		B437A11A16DD78D20092906B /* fivebyfive_textscrolling.c in Sources */ = {isa = PBXBuildFile; fileRef = B437A11916DD78D20092906B /* fivebyfive_textscrolling.c */; };
+		B437A11C16DD7BC40092906B /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = B437A11B16DD7BC40092906B /* Makefile */; };
+		B438B99B16DA074000C871C0 /* font.c in Sources */ = {isa = PBXBuildFile; fileRef = B438B99716DA074000C871C0 /* font.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B412BC9C16DA06AF00BB319C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		B412BC9E16DA06AF00BB319C /* FiveBitFrog */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FiveBitFrog; sourceTree = BUILT_PRODUCTS_DIR; };
+		B412BCA116DA06AF00BB319C /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		B42E618716DB6E6700268757 /* fivebyfive.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fivebyfive.c; sourceTree = SOURCE_ROOT; };
+		B437A11916DD78D20092906B /* fivebyfive_textscrolling.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fivebyfive_textscrolling.c; sourceTree = SOURCE_ROOT; };
+		B437A11B16DD7BC40092906B /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		B438B99116DA072500C871C0 /* fivebyfive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fivebyfive.h; sourceTree = "<group>"; };
+		B438B99316DA072500C871C0 /* fivebyfive_iodefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fivebyfive_iodefs.h; sourceTree = "<group>"; };
+		B438B99716DA074000C871C0 /* font.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = font.c; sourceTree = "<group>"; };
+		B438B99816DA074000C871C0 /* fivebyfive_textscrolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fivebyfive_textscrolling.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B412BC9B16DA06AF00BB319C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B412BC9516DA06AF00BB319C = {
+			isa = PBXGroup;
+			children = (
+				B437A11B16DD7BC40092906B /* Makefile */,
+				B438B98F16DA072500C871C0 /* fivebyfive_libs */,
+				B438B99616DA074000C871C0 /* textscrolling_lib */,
+				B412BCA016DA06AF00BB319C /* FiveBitFrog */,
+				B412BC9F16DA06AF00BB319C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B412BC9F16DA06AF00BB319C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B412BC9E16DA06AF00BB319C /* FiveBitFrog */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B412BCA016DA06AF00BB319C /* FiveBitFrog */ = {
+			isa = PBXGroup;
+			children = (
+				B412BCA116DA06AF00BB319C /* main.c */,
+			);
+			path = FiveBitFrog;
+			sourceTree = "<group>";
+		};
+		B438B98F16DA072500C871C0 /* fivebyfive_libs */ = {
+			isa = PBXGroup;
+			children = (
+				B438B99116DA072500C871C0 /* fivebyfive.h */,
+				B438B99316DA072500C871C0 /* fivebyfive_iodefs.h */,
+				B42E618716DB6E6700268757 /* fivebyfive.c */,
+			);
+			path = fivebyfive_libs;
+			sourceTree = "<group>";
+		};
+		B438B99616DA074000C871C0 /* textscrolling_lib */ = {
+			isa = PBXGroup;
+			children = (
+				B437A11916DD78D20092906B /* fivebyfive_textscrolling.c */,
+				B438B99716DA074000C871C0 /* font.c */,
+				B438B99816DA074000C871C0 /* fivebyfive_textscrolling.h */,
+			);
+			path = textscrolling_lib;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B412BC9D16DA06AF00BB319C /* FiveBitFrog */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B412BCA716DA06AF00BB319C /* Build configuration list for PBXNativeTarget "FiveBitFrog" */;
+			buildPhases = (
+				B412BC9A16DA06AF00BB319C /* Sources */,
+				B412BC9B16DA06AF00BB319C /* Frameworks */,
+				B412BC9C16DA06AF00BB319C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FiveBitFrog;
+			productName = FiveBitFrog;
+			productReference = B412BC9E16DA06AF00BB319C /* FiveBitFrog */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B412BC9616DA06AF00BB319C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Whale Food Software";
+			};
+			buildConfigurationList = B412BC9916DA06AF00BB319C /* Build configuration list for PBXProject "FiveBitFrog" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B412BC9516DA06AF00BB319C;
+			productRefGroup = B412BC9F16DA06AF00BB319C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B412BC9D16DA06AF00BB319C /* FiveBitFrog */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B412BC9A16DA06AF00BB319C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B412BCA216DA06AF00BB319C /* main.c in Sources */,
+				B438B99B16DA074000C871C0 /* font.c in Sources */,
+				B42E618816DB6E6700268757 /* fivebyfive.c in Sources */,
+				B437A11A16DD78D20092906B /* fivebyfive_textscrolling.c in Sources */,
+				B437A11C16DD7BC40092906B /* Makefile in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B412BCA516DA06AF00BB319C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		B412BCA616DA06AF00BB319C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		B412BCA816DA06AF00BB319C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B412BCA916DA06AF00BB319C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B412BC9916DA06AF00BB319C /* Build configuration list for PBXProject "FiveBitFrog" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B412BCA516DA06AF00BB319C /* Debug */,
+				B412BCA616DA06AF00BB319C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B412BCA716DA06AF00BB319C /* Build configuration list for PBXNativeTarget "FiveBitFrog" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B412BCA816DA06AF00BB319C /* Debug */,
+				B412BCA916DA06AF00BB319C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B412BC9616DA06AF00BB319C /* Project object */;
+}

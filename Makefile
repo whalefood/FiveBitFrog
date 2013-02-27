@@ -77,8 +77,9 @@
 #		created.
 #
 
-PRG            = fivebyfive_scrolltext
-OBJ            = fivebyfive_scrolltext.o font.o
+PRG            = fivebyfive
+DIRS	= font
+OBJ            = main.o fivebyfive.o font.o fivebyfive_textscrolling.o
 
 # note: use -Os to optimize for size
 
