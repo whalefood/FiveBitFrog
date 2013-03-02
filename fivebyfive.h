@@ -38,6 +38,9 @@ extern "C" {
 
 void fivebyfive_init();
 
+
+uint8_t buttonispressed();
+
 //
 // set pixel at (x, y) to val (1 = on, 0 = off)
 //

@@ -17,9 +17,16 @@
 
 void loadfontcharintobuffer(unsigned char c, uint16_t * buffer, uint8_t *fontWidth );
 
+typedef enum
+{
+    textscrollonce,
+    textscrollrepeat,
+    textscrolluntilbutton
+} textscrolloption;
+
 // scrolls text accross the screen
 // speed: adjusts scrolling speed (higher number == slower, 35-40 seems about right)
 // repeat: 1 to repeat scrolling.  0 to display text once
-void fivebyfivetext_scrolltext(char* text, uint8_t speed, uint8_t repeat);
+void fivebyfivetext_scrolltext(char* text, uint8_t speed, textscrolloption option);
 
 #endif

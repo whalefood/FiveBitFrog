@@ -18,7 +18,7 @@
  *
  *	revision history:
  *  - Feb 27, 2013 - Jonah
- *      separated the scrolltext fucntionality into separate files
+ *      separated the scrolltext fucntionality into separate files + refactoring
  *
  *	- jan 8, 2013 - rolf
  *		cleaned up code from original demo.  (based on older scrolltext.c of jun 28, 2012)
@@ -105,8 +105,14 @@ uint8_t PixelGroups[6][5] ={
     {0x00,0x00,0x00,0x00,0x1e}
 };
 
+
+uint8_t initialized = 0;
 void fivebyfive_init()
 {
+    if(initialized)
+        return;
+    initialized = 1;
+    
     avrinit();		// initialize AVR registers
     
     //
@@ -131,208 +137,53 @@ void fivebyfive_init()
     }
 }
 
+uint8_t buttonispressed()
+{
+    return  FLineEnabled && (input_test(F_LINE) == 0) ? 1 : 0;
+}
 
 
 void setpixel(uint8_t x, uint8_t y, uint8_t val);
 
-void drawFrame(uint8_t *Disp)
+void drawFrame(uint8_t *frame)
 {
     //must display each pixel group separately
-    
     for(uint8_t grpNum =0; grpNum<6; grpNum++)
     {
-        // first, poll switch - switch pin is active low (i.e. low if pressed)
-        input_test(F_LINE);	// dummy read
-        NOP();
-        if (FLineEnabled && (input_test(F_LINE) == 0)) {
-            ;
-        }
-        else
+       
+        //setpixels that are intersection of pixel group and frame buffer
+        uint8_t * pixGrp = PixelGroups[grpNum];
+        for(uint8_t row=0; row<5; row++)
         {
-            //setpixels that are intersection of pixel gorup and frame buffer
-            uint8_t * pixGrp = PixelGroups[grpNum];
-            for(uint8_t row=0; row<5; row++)
+            uint8_t colMask = 0x10;
+            for(uint8_t col = 0; col < 5; col++)
             {
-                uint8_t colMask = 1;
-                for(uint8_t col = 1; col < 5; col++)
+                if(pixGrp[row] & colMask & frame[row])
                 {
-                    setpixel(col, row, pixGrp[row] & Disp[row] & colMask);
-                    colMask <<=1;
+                    setpixel(col, row, 1);
                 }
+                colMask >>=1;
             }
-            delay1(1);
         }
+        delay1(1);
         
+        //turn off all pixels
+        for(uint8_t row=0; row<5; row++)
+        {
+            uint8_t colMask = 0x10;
+            for(uint8_t col = 0; col < 5; col++)
+            {
+                if(pixGrp[row] & colMask)
+                {
+                    setpixel(col,row, 0);
+                }
+                colMask >>=1;
+            }
+        }
     }
+    
 }
 
-    /*
-void drawFrame(uint8_t *Disp)
-{
-    
-	uint8_t i;
-	uint8_t del1 = 1;	// delay between "pixel groups" (there are 6)
-    
-	uint8_t a,b,c,d,e;
-	
-	uint8_t blankEn = FLineEnabled;		// check global flag whether F_LINE should be looked at or not
-    
-    
-	for (i = 0; i < 6; i++) {		// loop thru all the "pixel groups"
-        
-		switch (i) {
-                
-            case 0:
-                // decide which pixels of top (row 0) are on
-                a = Disp[0] & 0x10;
-                b = Disp[0] & 0x08;
-                c = Disp[0] & 0x04;
-                d = Disp[0] & 0x02;
-                e = Disp[0] & 0x01;
-                
-                // first, poll switch - switch pin is active low (i.e. low if pressed)
-                input_test(F_LINE);	// dummy read
-                NOP();
-                if (blankEn && (input_test(F_LINE) == 0)) {
-                    ;
-                }
-                else
-                {
-                    if (a) setpixel(0, 0, 1);
-                    if (b) setpixel(1, 0, 1);
-                    if (c) setpixel(2, 0, 1);
-                    if (d) setpixel(3, 0, 1);
-                    if (e) setpixel(4, 0, 1);
-                }
-                delay1(del1);
-                if (a) setpixel(0, 0, 0);
-                if (b) setpixel(1, 0, 0);
-                if (c) setpixel(2, 0, 0);
-                if (d) setpixel(3, 0, 0);
-                if (e) setpixel(4, 0, 0);
-                break;
-                
-            case 1:
-                b = Disp[1] & 0x08;
-                c = Disp[1] & 0x04;
-                d = Disp[1] & 0x02;
-                e = Disp[1] & 0x01;
-                
-                input_test(F_LINE);	// dummy read
-                NOP();
-                if (blankEn && (input_test(F_LINE) == 0)) {
-                    ;
-                } else {
-                    if (b) setpixel(1, 1, 1);
-                    if (c) setpixel(2, 1, 1);
-                    if (d) setpixel(3, 1, 1);
-                    if (e) setpixel(4, 1, 1);
-                }
-                delay1(del1);
-                if (b) setpixel(1, 1, 0);
-                if (c) setpixel(2, 1, 0);
-                if (d) setpixel(3, 1, 0);
-                if (e) setpixel(4, 1, 0);
-                break;
-                
-            case 2:
-                a = Disp[1] & 0x10;
-                c = Disp[2] & 0x04;
-                d = Disp[2] & 0x02;
-                e = Disp[2] & 0x01;
-                
-                input_test(F_LINE);	// dummy read
-                NOP();
-                if (blankEn && (input_test(F_LINE) == 0)) {
-                    ;
-                } else {
-                    if (a) setpixel(0, 1, 1);
-                    if (c) setpixel(2, 2, 1);
-                    if (d) setpixel(3, 2, 1);
-                    if (e) setpixel(4, 2, 1);
-                }
-                delay1(del1);
-                if (a) setpixel(0, 1, 0);
-                if (c) setpixel(2, 2, 0);
-                if (d) setpixel(3, 2, 0);
-                if (e) setpixel(4, 2, 0);
-                break;
-                
-            case 3:
-                a = Disp[2] & 0x10;
-                b = Disp[2] & 0x08;
-                d = Disp[3] & 0x02;
-                e = Disp[3] & 0x01;
-                
-                input_test(F_LINE);	// dummy read
-                NOP();
-                if (blankEn && (input_test(F_LINE) == 0)) {
-                    ;
-                } else {
-                    if (a) setpixel(0, 2, 1);
-                    if (b) setpixel(1, 2, 1);
-                    if (d) setpixel(3, 3, 1);
-                    if (e) setpixel(4, 3, 1);
-                }
-                delay1(del1);
-                if (a) setpixel(0, 2, 0);
-                if (b) setpixel(1, 2, 0);
-                if (d) setpixel(3, 3, 0);
-                if (e) setpixel(4, 3, 0);
-                break;
-                
-            case 4:
-                a = Disp[3] & 0x10;
-                b = Disp[3] & 0x08;
-                c = Disp[3] & 0x04;
-                e = Disp[4] & 0x01;
-                
-                input_test(F_LINE);	// dummy read
-                NOP();
-                if (blankEn && (input_test(F_LINE) == 0)) {
-                    ;
-                } else {
-                    if (a) setpixel(0, 3, 1);
-                    if (b) setpixel(1, 3, 1);
-                    if (c) setpixel(2, 3, 1);
-                    if (e) setpixel(4, 4, 1);
-                }
-                delay1(del1);
-                if (a) setpixel(0, 3, 0);
-                if (b) setpixel(1, 3, 0);
-                if (c) setpixel(2, 3, 0);
-                if (e) setpixel(4, 4, 0);
-                break;
-                
-            case 5:
-                a = Disp[4] & 0x10;
-                b = Disp[4] & 0x08;
-                c = Disp[4] & 0x04;
-                d = Disp[4] & 0x02;
-                
-                input_test(F_LINE);	// dummy read
-                NOP();
-                if (blankEn && (input_test(F_LINE) == 0)) {
-                    ;
-                } else {
-                    if (a) setpixel(0, 4, 1);
-                    if (b) setpixel(1, 4, 1);
-                    if (c) setpixel(2, 4, 1);
-                    if (d) setpixel(3, 4, 1);
-                }
-                
-                delay1(del1);
-                if (a) setpixel(0, 4, 0);
-                if (b) setpixel(1, 4, 0);
-                if (c) setpixel(2, 4, 0);
-                if (d) setpixel(3, 4, 0);
-                break;
-		}
-	}
-    
-}
-*/
-    
 //
 // set pixel at (x, y) to val (1 = on, 0 = off)
 //
